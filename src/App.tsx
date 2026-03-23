@@ -1,19 +1,19 @@
-import "./App.css";
-import Home from "./pages/Home";
-import CharacterDetail from "./components/CharacterDetail";
-import Navbar from "./components/Navbar";
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import './App.css';
+import Home from './pages/Home';
+import CharacterDetail from './components/CharacterDetail';
+import Navbar from './components/Navbar';
+import { useState, FC } from 'react';
+import { motion } from 'framer-motion';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 const MotionDiv = motion.div;
 
-function App() {
-  const [likedCharacters, setLikedCharacters] = useState([]);
-  const [showOnlyLiked, setShowOnlyLiked] = useState(false);
+const App: FC = () => {
+  const [likedCharacters, setLikedCharacters] = useState<string[]>([]);
+  const [showOnlyLiked, setShowOnlyLiked] = useState<boolean>(false);
 
-  const handleFavClick = () => setShowOnlyLiked((prev) => !prev);
-  const handleAllCharactersClick = () => setShowOnlyLiked(false);
+  const handleFavClick = (): void => setShowOnlyLiked((prev) => !prev);
+  const handleAllCharactersClick = (): void => setShowOnlyLiked(false);
 
   return (
     <BrowserRouter>
@@ -27,7 +27,7 @@ function App() {
         <MotionDiv
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
         >
           <Routes>
             <Route
@@ -54,6 +54,6 @@ function App() {
       </div>
     </BrowserRouter>
   );
-}
+};
 
 export default App;

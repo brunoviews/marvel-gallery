@@ -1,6 +1,6 @@
-import React from "react";
+import { FC } from 'react';
 
-function MarvelIcon() {
+const MarvelIcon: FC = () => {
   return (
     <svg
       width={130}
@@ -23,11 +23,16 @@ function MarvelIcon() {
       </g>
       <defs>
         <clipPath id="clip0_38_148">
-          <rect width={130} height={52} fill="white" transform="translate(0 0)" />
+          <rect
+            width={130}
+            height={52}
+            fill="white"
+            transform="translate(0 0)"
+          />
         </clipPath>
       </defs>
     </svg>
   );
-}
+};
 
 export default MarvelIcon;

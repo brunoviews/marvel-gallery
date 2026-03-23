@@ -1,6 +1,16 @@
-import React from "react";
+import { FC } from 'react';
 
-function CardHeart({ width = "", height = "", fill = "#EC1D24" }) {
+interface CardHeartProps {
+  width?: string | number;
+  height?: string | number;
+  fill?: string;
+}
+
+const CardHeart: FC<CardHeartProps> = ({
+  width = '',
+  height = '',
+  fill = '#EC1D24',
+}) => {
   return (
     <svg
       width={width}
@@ -17,6 +27,6 @@ function CardHeart({ width = "", height = "", fill = "#EC1D24" }) {
       />
     </svg>
   );
-}
+};
 
 export default CardHeart;

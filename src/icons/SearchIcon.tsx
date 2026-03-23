@@ -1,8 +1,9 @@
-import React from "react";
+import { FC } from 'react';
 
-function SearchIcon() {
+const SearchIcon: FC<{ className?: string }> = ({ className }) => {
   return (
     <svg
+      className={className}
       width={12}
       height={12}
       viewBox="0 0 13 13"
@@ -15,6 +16,6 @@ function SearchIcon() {
       />
     </svg>
   );
-}
+};
 
 export default SearchIcon;

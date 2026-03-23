@@ -1,12 +1,20 @@
-import React from "react";
+import { FC, CSSProperties } from 'react';
 
-function HeartIcon({
-  width = "",
-  height = "",
-  className = "",
-  fill = "#EC1D24",
+interface HeartIconProps {
+  width?: string | number;
+  height?: string | number;
+  className?: string;
+  fill?: string;
+  style?: CSSProperties;
+}
+
+const HeartIcon: FC<HeartIconProps> = ({
+  width = '',
+  height = '',
+  className = '',
+  fill = '#EC1D24',
   style,
-}) {
+}) => {
   return (
     <svg
       className={className}
@@ -25,6 +33,6 @@ function HeartIcon({
       />
     </svg>
   );
-}
+};
 
 export default HeartIcon;

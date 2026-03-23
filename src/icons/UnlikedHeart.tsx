@@ -1,6 +1,16 @@
-import React from "react";
+import { FC } from 'react';
 
-function UnlikedHeart({ width = "12", height = "", className = "" }) {
+interface UnlikedHeartProps {
+  width?: string | number;
+  height?: string | number;
+  className?: string;
+}
+
+const UnlikedHeart: FC<UnlikedHeartProps> = ({
+  width = '12',
+  height = '',
+  className = '',
+}) => {
   return (
     <svg
       className={className}
@@ -16,6 +26,6 @@ function UnlikedHeart({ width = "12", height = "", className = "" }) {
       />
     </svg>
   );
-}
+};
 
 export default UnlikedHeart;

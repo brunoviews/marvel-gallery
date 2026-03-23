@@ -1,21 +1,30 @@
-import React, { useState, useEffect } from "react";
-import "./CharacterDetail.css";
-import { useParams } from "react-router-dom";
-import UnlikedHeart from "../icons/UnlikedHeart";
-import CardHeart from "../icons/CardHeart";
+import { FC, useState, useEffect } from 'react';
+import './CharacterDetail.css';
+import { useParams } from 'react-router-dom';
+import UnlikedHeart from '../icons/UnlikedHeart';
+import CardHeart from '../icons/CardHeart';
+import { Character, SetLikedCharacters } from '../types';
 
-function CharacterDetail({ likedCharacters, setLikedCharacters }) {
-  const { id } = useParams();
-  const [character, setCharacter] = useState(null);
+interface CharacterDetailProps {
+  likedCharacters: string[];
+  setLikedCharacters: SetLikedCharacters;
+}
+
+const CharacterDetail: FC<CharacterDetailProps> = ({
+  likedCharacters,
+  setLikedCharacters,
+}) => {
+  const { id } = useParams<{ id: string }>();
+  const [character, setCharacter] = useState<Character | null>(null);
 
   useEffect(() => {
     fetch(`https://68012ab881c7e9fbcc41be05.mockapi.io/api/v1/characters/${id}`)
       .then((response) => response.json())
-      .then((data) => {
+      .then((data: Character) => {
         setCharacter(data);
       })
       .catch((error) => {
-        console.error("Error fetching character:", error);
+        console.error('Error fetching character:', error);
       });
   }, [id]);
 
@@ -23,7 +32,7 @@ function CharacterDetail({ likedCharacters, setLikedCharacters }) {
 
   const isLiked = likedCharacters.includes(character.id);
 
-  const handleLikeClick = () => {
+  const handleLikeClick = (): void => {
     if (isLiked) {
       setLikedCharacters(likedCharacters.filter((cid) => cid !== character.id));
     } else {
@@ -31,10 +40,10 @@ function CharacterDetail({ likedCharacters, setLikedCharacters }) {
     }
   };
 
-  const comicsSorted = [...character.comics].sort((a, b) => {
-    const dateA = new Date(a.date);
-    const dateB = new Date(b.date);
-    return dateB - dateA;
+  const comicsSorted = [...(character.comics || [])].sort((a, b) => {
+    const dateA = new Date(a.date || '');
+    const dateB = new Date(b.date || '');
+    return dateB.getTime() - dateA.getTime();
   });
 
   return (
@@ -45,7 +54,7 @@ function CharacterDetail({ likedCharacters, setLikedCharacters }) {
           <div className="character-detail-header">
             <div className="character-detail-header-title">
               <h2>{character.name}</h2>
-              <div onClick={handleLikeClick} style={{ cursor: "pointer" }}>
+              <div onClick={handleLikeClick} style={{ cursor: 'pointer' }}>
                 {isLiked ? (
                   <CardHeart width="24" height="22" fill="#EC1D24" />
                 ) : (
@@ -70,9 +79,7 @@ function CharacterDetail({ likedCharacters, setLikedCharacters }) {
                 <img src={comic.path} alt={comic.title} />
                 <div className="comic-info-container">
                   <h3 className="comic-title">{comic.title}</h3>
-                  <h5 className="comic-date">
-                    {comic.date ? comic.date.slice(0, 4) : ""}
-                  </h5>
+                  <h5 className="comic-date">{comic.date}</h5>
                 </div>
               </div>
             ))}
@@ -81,6 +88,6 @@ function CharacterDetail({ likedCharacters, setLikedCharacters }) {
       </div>
     </>
   );
-}
+};
 
 export default CharacterDetail;
