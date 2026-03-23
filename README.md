@@ -1,53 +1,192 @@
-# Marvel Gallery App
+# Marvel Gallery
 
-This project is a Marvel-themed gallery application built with React and Vite. It allows users to browse a list of Marvel characters, search for specific characters, and view their details. The app is styled with responsive design principles to ensure a great user experience on both desktop and mobile devices.
+A modern Marvel character gallery application built with **React 19**, **TypeScript**, and **Vite**. This project demonstrates production-ready React patterns including type-safe components, state management, and responsive design.
 
-## Features
+## ✨ Features
 
-- **Character Search**: Search for Marvel characters by name.
-- **Responsive Design**: Optimized for both desktop and mobile screens.
-- **Favorites Counter**: Display a counter for favorite characters.
-- **Dynamic Character List**: Fetch and display characters dynamically from an API.
-- **Reusable Components**: Modular and reusable React components.
+- **Character Gallery**: Browse Marvel characters with smooth animations
+- **Advanced Search**: Filter characters by name in real-time
+- **Favorites System**: Mark and filter favorite characters
+- **Character Details**: View detailed information and comic appearances for each character
+- **Type-Safe**: 100% TypeScript with strict mode enabled
+- **Responsive Design**: Optimized for desktop and mobile devices
+- **Smooth Animations**: Framer Motion for elegant transitions
 
-## Technologies Used
+## 🛠 Tech Stack
 
-- **React**: For building the user interface.
-- **Vite**: For fast development and build tooling.
-- **CSS**: For styling the application.
-- **Mock API**: For fetching character data. I have created my own API for this project.
-- **ESLint**: For maintaining code quality.
+- **React 19.0** - UI library
+- **TypeScript** - Static type checking
+- **Vite 6** - Build tool & dev server
+- **React Router 7** - Client-side routing
+- **Framer Motion 12** - Animation library
+- **ESLint 9** - Code linting
+- **CSS3** - Styling with component-scoped styles
 
-## Installation
+## 📁 Project Structure
+
+```
+src/
+├── components/          # Reusable React components
+│   ├── CharacterCard.tsx
+│   ├── CharacterCard.css
+│   ├── CharacterDetail.tsx
+│   ├── CharacterList.tsx
+│   └── Navbar.tsx
+├── pages/              # Page components
+│   └── Home.tsx
+├── icons/              # SVG icon components
+├── assets/             # Static assets & data
+│   └── fakeCharacters.ts
+├── types.ts            # Shared TypeScript interfaces
+├── App.tsx             # Root component
+└── main.tsx            # Application entry point
+```
+
+## 🔌 Type System
+
+All components are fully typed with interfaces defined in `types.ts`:
+
+```typescript
+interface Character {
+  id: string;
+  name: string;
+  description?: string;
+  path: string;
+  favourite?: boolean;
+  comics?: Comic[];
+}
+
+interface Comic {
+  id: string;
+  title: string;
+  date: string;
+  path: string;
+}
+```
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 16+ (npm or yarn)
+
+### Installation
 
 1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/marvel-gallery-app.git
-   cd marvel-gallery-app
-   ```
+
+```bash
+git clone https://github.com/brunoviews/marvel-gallery
+cd marvel-gallery
+```
 
 2. Install dependencies:
-   ```bash
-   npm install
-   ```
 
-3. If you want to use the Marvel API securely from a server runtime, create a local `.env` file from the example:
-   ```bash
-   cp .env.example .env
-   ```
+```bash
+npm install
+```
 
-4. Add your Marvel credentials to `.env`:
-   ```bash
-   MARVEL_PUBLIC_KEY=your_marvel_public_key
-   MARVEL_PRIVATE_KEY=your_marvel_private_key
-   ```
+3. Start development server:
 
-5. Start the development server:
-   ```bash
-   npm run dev
-   ```
+```bash
+npm run dev
+```
 
-6. Open the app in your browser at `http://localhost:5173`.
+4. Open browser at `http://localhost:5173`
+
+## 📦 Available Scripts
+
+```bash
+# Development server with hot reload
+npm run dev
+
+# Production build
+npm run build
+
+# Preview production build locally
+npm run preview
+
+# Lint code
+npm run lint
+```
+
+## 🎯 Component Highlights
+
+### CharacterCard
+
+- Displays character preview with image, name, and like button
+- Hover effects with smooth animations
+- Link integration for navigation to details
+
+### CharacterDetail
+
+- Full character profile with description
+- Comic book list with sorting by date
+- Like/unlike functionality
+
+### Home Page
+
+- Real-time character search
+- Filter by favorites
+- Dynamic results counter
+- Animated character grid with Framer Motion
+
+## 🔄 Data Flow
+
+The app uses **React hooks** for state management:
+
+```
+App (global state)
+├── likedCharacters: string[]
+├─ showOnlyLiked: boolean
+└── Passed down via props to:
+    ├── Home → CharacterList → CharacterCard
+    └── CharacterDetail
+```
+
+## 🔐 Type Safety
+
+- **Strict TypeScript** mode enabled (`tsconfig.json`)
+- **FC<Props>** typed components
+- **Explicit event types** (MouseEvent, ChangeEvent, etc.)
+- **No `any` types** throughout codebase
+
+## 📱 Responsive Design
+
+- Mobile-first CSS approach
+- Optimized layouts for all screen sizes
+- Touch-friendly interactive elements
+- Smooth animations on all devices
+
+## 🎨 Styling
+
+- Component-scoped CSS files
+- Consistent color scheme featuring Marvel Red (#EC1D24)
+- Font: Roboto Condensed for consistent typography
+- CSS Grid and Flexbox for layouts
+
+## 🧪 Future Improvements
+
+- [ ] Add Context API for global state (remove prop drilling)
+- [ ] Implement custom hooks for data fetching (useCharacters, useLike)
+- [ ] Create dedicated viewModels per component
+- [ ] Add React Query for server state management
+- [ ] Add unit tests with Vitest
+- [ ] Implement error boundaries
+- [ ] Add loading skeletons
+
+## 📚 Learning Notes
+
+This project was refactored from a JavaScript/CSS portfolio piece to demonstrate:
+
+1. **TypeScript Migration** - Converting to strict type checking
+2. **Component Architecture** - Separating concerns and creating reusable components
+3. **Props Typing** - Clear interfaces for component contracts
+4. **React Patterns** - Hooks, state management, routing
+5. **Production Best Practices** - ESLint, build optimization, responsive design
+
+## 📄 License
+
+This project is open source and available under the MIT License.
 
 ## Security Notes
 
